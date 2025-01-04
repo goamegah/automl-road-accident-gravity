@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import functools as ft
 
 class PreProcessing:
     def ordinal_encode(self, df, l_order):
