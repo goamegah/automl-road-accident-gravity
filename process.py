@@ -1,8 +1,6 @@
 import numpy as np
 import pandas as pd
 
-# Fonction de split stratifié
-# Remplacement de scikit-learn avec une implémentation maison
 def stratified_train_test_split(X, y, test_size, random_state):
     unique_classes, class_counts = np.unique(y, return_counts=True)
     proportions = class_counts / class_counts.sum()
@@ -23,7 +21,6 @@ def stratified_train_test_split(X, y, test_size, random_state):
         y.iloc[train_indices], y.iloc[test_indices]
     )
 
-# Fonction de normalisation min-max manuelle
 def min_max_normalize(dataframe, columns):
     for col in columns:
         min_val = dataframe[col].min()
@@ -31,11 +28,11 @@ def min_max_normalize(dataframe, columns):
         dataframe[col] = (dataframe[col] - min_val) / (max_val - min_val)
     return dataframe
 
-# Chargement des données
+
 file_path = './dataset/cleaned_data.csv'
 dataset = pd.read_csv(file_path)
 
-# Traitement des valeurs manquantes
+
 dataset = dataset.dropna(subset=['grav'])
 missing_threshold = 0.7 * len(dataset)
 columns_to_drop = [col for col in dataset.columns if dataset[col].isnull().sum() > missing_threshold]
